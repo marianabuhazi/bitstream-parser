@@ -26,11 +26,11 @@
   .highlight-ffff {
     background-color: rgb(135, 232, 116);
   }
-  .highlight-length {
-    background-color: rgb(232, 116, 143);
-  }
   .highlight-encrypt {
     background-color: rgb(232, 116, 143);
+  }
+  .highlight-wbstar {
+    background-color: rgb(191, 149, 227);
   }
   .name{
 	color:black;
@@ -132,7 +132,8 @@
 			<ul>
 			  <li><span class="highlight-sync"></span>SYNC WORD</li>
 			  <li><span class="highlight-nop"></span> NOP</li>
-			  <li><span class="highlight-ffff"></span> START OF RAW BITSTREAM</li>
+			  <li><span class="highlight-ffff"></span>START OF RAW BITSTREAM</li>
+			  <li><span class="highlight-wbstar"></span>WBSTAR WRITE</li>
 			</ul>
 		</div>
 	</div>
@@ -451,6 +452,7 @@
 			(word === 'aa99' && words[i + 1] === '5566') 
 			|| (word === '2000' && words[i + 1] === '0000') 
 			|| (word === 'ffff' && words[i + 1] === 'ffff') 
+			|| (word === '3002' && words[i + 1] === '0001')
 			|| (word === '454e' && words[i + 1] === '4352' && words[i + 2] === '5950' && words[i + 3] === '543d') 
 			) {
 			if(word === 'aa99'){
@@ -476,6 +478,11 @@
 			  span.classList.add('highlight-encrypt');
 			  span.textContent = word + ' ' + words[i + 1] + ' ' + words[i + 2] + ' ' + words[i + 3] + ' |';
 			  i=i+4;
+			}
+			else if(word === '3002'){
+			  span.classList.add('highlight-wbstar');
+			  span.textContent = word + ' ' + words[i + 1] + ' ';
+			  i++;
 			}
 		  }
 		  else {
