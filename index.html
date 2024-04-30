@@ -32,6 +32,9 @@
   .highlight-wbstar {
     background-color: rgb(191, 149, 227);
   }
+  .highlight-target {
+    background-color: rgb(225, 193, 111);
+  }
   .name{
 	color:black;
 	text-align: center;
@@ -134,6 +137,7 @@
 			  <li><span class="highlight-nop"></span> NOP</li>
 			  <li><span class="highlight-ffff"></span>START OF RAW BITSTREAM</li>
 			  <li><span class="highlight-wbstar"></span>WBSTAR WRITE</li>
+			  <li><span class="highlight-target"></span>TARGET DEVICE</li>
 			</ul>
 		</div>
 	</div>
@@ -450,6 +454,9 @@
 		  let spanWrapper = document.createElement('span');
 		  if (
 			(word === 'aa99' && words[i + 1] === '5566') 
+			|| (word == '7863' && words[i + 1] === '6b75')
+			|| (word == '3033' && words[i + 1] === '352d')
+			|| (word == '6666' && words[i + 1] === '7661')
 			|| (word === '2000' && words[i + 1] === '0000') 
 			|| (word === 'ffff' && words[i + 1] === 'ffff') 
 			|| (word === '3002' && words[i + 1] === '0001')
@@ -470,10 +477,6 @@
 			  span.textContent = word + ' ' + words[i + 1] + ' ';
 			  i++;
 			}
-			else if(word === '0009'){
-			  span.classList.add('highlight-length');
-			  span.textContent = word + ' ';
-			}
 			else if(word === '454e'){
 			  span.classList.add('highlight-encrypt');
 			  span.textContent = word + ' ' + words[i + 1] + ' ' + words[i + 2] + ' ' + words[i + 3] + ' |';
@@ -481,6 +484,21 @@
 			}
 			else if(word === '3002'){
 			  span.classList.add('highlight-wbstar');
+			  span.textContent = word + ' ' + words[i + 1] + ' ';
+			  i++;
+			}
+			else if(word === '3033'){
+			  span.classList.add('highlight-length');
+			  span.textContent = word + ' ' + words[i + 1] + ' ';
+			  i++;
+			}
+			else if(word === '7863'){
+			  span.classList.add('highlight-length');
+			  span.textContent = word + ' ' + words[i + 1] + ' ';
+			  i++;
+			}
+			else if(word === '6666'){
+			  span.classList.add('highlight-length');
 			  span.textContent = word + ' ' + words[i + 1] + ' ';
 			  i++;
 			}
@@ -494,7 +512,6 @@
 		}
 		
 		bitstreamDiv.appendChild(lineDiv);
-		//bitstreamDiv.appendChild(document.createElement('br'));
 	  });
 	}
   
